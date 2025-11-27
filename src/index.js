@@ -6,6 +6,9 @@ const { connectDB } = require("./config/db");
 dotenv.config();
 const app = express();
 
+// Ensure models and their associations are initialized
+// require("./models");
+
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());

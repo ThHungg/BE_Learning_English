@@ -9,21 +9,24 @@ const register = async (req, res) => {
       return res.status(400).json({ message: "Email không hợp lệ" });
     }
     if (!username || !email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Vui lòng nhập đầy đủ thông tin" });
+      return res.status(400).json({
+        status: "Err",
+        message: "Vui lòng nhập đầy đủ thông tin",
+      });
     }
 
     if (password.length < 6) {
-      return res
-        .status(400)
-        .json({ message: "Mật khẩu phải có ít nhất 6 ký tự" });
+      return res.status(400).json({
+        status: "Err",
+        message: "Mật khẩu phải có ít nhất 6 ký tự",
+      });
     }
     const response = await authService.register(username, email, password);
     return res.status(200).json(response);
   } catch (e) {
     console.log(e);
     return res.status(404).json({
+      status: "Err",
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     });
   }
@@ -33,9 +36,10 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Vui lòng nhập đầy đủ thông tin" });
+      return res.status(400).json({
+        status: "Err",
+        message: "Vui lòng nhập đầy đủ thông tin",
+      });
     }
     const response = await authService.login(email, password);
     const { access_token, ...newReponse } = response;

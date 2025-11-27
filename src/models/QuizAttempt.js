@@ -13,12 +13,12 @@ const QuizAttempt = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    start_at: {
+    started_at: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    finish_at: {
+    finished_at: {
       type: DataTypes.DATE,
       defaultValue: null,
     },
@@ -26,7 +26,7 @@ const QuizAttempt = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    correct_answers: {
+    correct_count: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
