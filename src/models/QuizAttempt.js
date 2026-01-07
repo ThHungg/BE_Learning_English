@@ -24,15 +24,15 @@ const QuizAttempt = sequelize.define(
     },
     total_questions: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      defaultValue: 0, // Thay đổi: Mặc định 0
     },
     correct_count: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      defaultValue: 0, // Thay đổi: Mặc định 0
     },
     score: {
       type: DataTypes.FLOAT,
-      allowNull: false,
+      defaultValue: 0, // Thay đổi: Mặc định 0
     },
   },
   {

@@ -1,6 +1,6 @@
-const UserWord = require("../models/Userword");
+const UserWord = require("../models/UserWord");
 
-const addWord = async (english_word, vn_meaning, userId) => {
+const addWord = async (english_word, vn_meaning, word_type, userId) => {
   try {
     const checkWord = await UserWord.findOne({
       where: { user_id: userId, english_word },
@@ -14,6 +14,7 @@ const addWord = async (english_word, vn_meaning, userId) => {
     const newWord = await UserWord.create({
       user_id: userId,
       english_word,
+      word_type,
       vietnamese_meaning: vn_meaning,
     });
     return {
@@ -35,6 +36,7 @@ const getUserWords = async (userId, limit, offset, page) => {
       where: { user_id: userId },
       limit,
       offset,
+      order: [["id", "DESC"]], // Sắp xếp từ mới nhất
     });
     const totalPage = Math.ceil(count / limit);
     return {

@@ -6,7 +6,7 @@ const register = async (username, email, password) => {
   try {
     const user = await User.findOne({ where: { email } });
     if (user) {
-      return { message: "Email đã được đăng ký" };
+      return { status: "Err", message: "Email đã được đăng ký" };
     }
     const hashPass = bcrypt.hashSync(password, 10);
     const newUser = await User.create({
@@ -14,10 +14,14 @@ const register = async (username, email, password) => {
       email,
       password: hashPass,
     });
-    return { message: "Đăng ký thành công", user: newUser };
+    return {
+      status: "Ok",
+      message: "Đăng ký thành công",
+      user: newUser,
+    };
   } catch (e) {
     console.log(e);
-    return { message: "Lỗi hệ thống vui lòng thử lại sau!" };
+    return { status: "Err", message: "Lỗi hệ thống vui lòng thử lại sau!" };
   }
 };
 
@@ -25,17 +29,18 @@ const login = async (email, password) => {
   try {
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return { message: "Tài khoản không tồn tại" };
+      return { status: "Err", message: "Tài khoản không tồn tại" };
     }
     const comparePass = bcrypt.compareSync(password, user.password);
     if (!comparePass) {
-      return { message: "Mật khẩu không đúng" };
+      return { status: "Err", message: "Mật khẩu không đúng" };
     }
     const access_token = gennerateToken({
       id: user.id,
     });
 
     return {
+      status: "Ok",
       message: "Đăng nhập thành công",
       user: {
         id: user.id,
@@ -45,7 +50,7 @@ const login = async (email, password) => {
       },
     };
   } catch (e) {
-    return { message: "Lỗi hệ thống vui lòng thử lại sau!" };
+    return { status: "Err", message: "Lỗi hệ thống vui lòng thử lại sau!" };
   }
 };
 

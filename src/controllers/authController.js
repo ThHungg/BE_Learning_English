@@ -3,6 +3,7 @@ const authService = require("../services/authService");
 const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+
     console.log("req.body:", req.body);
     const regmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!regmail.test(email)) {
@@ -22,6 +23,7 @@ const register = async (req, res) => {
       });
     }
     const response = await authService.register(username, email, password);
+    console.log("Register response:", response);
     return res.status(200).json(response);
   } catch (e) {
     console.log(e);
@@ -50,6 +52,7 @@ const login = async (req, res) => {
     return res.status(200).json(newReponse);
   } catch (e) {
     return res.status(404).json({
+      status: "Err",
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     });
   }

@@ -17,8 +17,24 @@ const UserWord = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // --- THÊM TRƯỜNG NÀY ---
+    word_type: {
+      type: DataTypes.ENUM(
+        "noun",
+        "verb",
+        "adj",
+        "adv",
+        "prep",
+        "conj",
+        "interj",
+        "phrase"
+      ),
+      defaultValue: "noun",
+      allowNull: false,
+    },
+    // -----------------------
     vietnamese_meaning: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT, // Đổi sang TEXT cho khớp với SQL bạn viết lúc đầu
       allowNull: false,
     },
     mastery_level: {

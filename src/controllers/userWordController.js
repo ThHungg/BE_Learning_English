@@ -2,7 +2,7 @@ const userWordService = require("../services/userWordService");
 
 const addWord = async (req, res) => {
   try {
-    const { english_word, vn_meaning } = req.body;
+    const { english_word, vn_meaning, word_type } = req.body;
     const userId = req.user.id;
     if (!english_word || !vn_meaning) {
       return res.status(400).json({
@@ -13,6 +13,7 @@ const addWord = async (req, res) => {
     const response = await userWordService.addWord(
       english_word,
       vn_meaning,
+      word_type,
       userId
     );
     return res.status(200).json(response);

@@ -31,6 +31,15 @@ const QuizItem = sequelize.define(
     },
     is_correct: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false, // Nên mặc định là false thay vì null
+    },
+    // --- THÊM 2 TRƯỜNG NÀY ---
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    submitted_at: {
+      type: DataTypes.DATE,
       defaultValue: null,
     },
   },
