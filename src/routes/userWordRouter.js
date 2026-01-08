@@ -11,5 +11,6 @@ router.delete(
   authenticateToken,
   userWordController.deleteWord
 );
+router.get("/stats", authenticateToken, userWordController.getWordTypeStats);
 
 module.exports = router;

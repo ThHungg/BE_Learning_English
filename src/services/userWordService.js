@@ -1,3 +1,4 @@
+const { Sequelize } = require("sequelize");
 const UserWord = require("../models/UserWord");
 
 const addWord = async (english_word, vn_meaning, word_type, userId) => {
@@ -103,9 +104,40 @@ const deleteWord = async (wordId, userId) => {
   }
 };
 
+const getWordTypeStats = async (userId) => {
+  try {
+    const stats = await UserWord.findAll({
+      where: { user_id: userId },
+      attributes: [
+        "word_type",
+        [Sequelize.fn("COUNT", Sequelize.col("id")), "count"],
+      ],
+      group: ["word_type"],
+      raw: true,
+    });
+
+    const formattedStats = stats.reduce((acc, curr) => {
+      acc[curr.word_type] = parseInt(curr.count);
+      return acc;
+    }, {});
+
+    return {
+      status: "Ok",
+      message: "Thống kê từ loại thành công",
+      data: formattedStats,
+    };
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Lỗi hệ thống vui lòng thử lại sau!",
+    };
+  }
+};
+
 module.exports = {
   addWord,
   getUserWords,
   updateWord,
   deleteWord,
+  getWordTypeStats,
 };

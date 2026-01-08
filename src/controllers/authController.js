@@ -76,8 +76,35 @@ const logout = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { oldPassword, newPassword } = req.body;
+
+    if (!oldPassword || !newPassword) {
+      return res.status(400).json({
+        status: "Err",
+        message: "Vui lòng cung cấp đầy đủ thông tin",
+      });
+    }
+
+    const response = await authService.changePassword(
+      userId,
+      oldPassword,
+      newPassword
+    );
+    return res.status(200).json(response);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      message: "Lỗi hệ thống vui lòng thử lại sau!",
+    });
+  }
+};
+
 module.exports = {
   register,
   login,
   logout,
+  changePassword,
 };

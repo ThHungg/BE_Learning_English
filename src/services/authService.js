@@ -54,7 +54,28 @@ const login = async (email, password) => {
   }
 };
 
+const changePassword = async (userId, oldPassword, newPassword) => {
+  try {
+    const user = await User.findOne({ where: { id: userId } });
+    if (!user) {
+      return { status: "Err", message: "Người dùng không tồn tại" };
+    }
+    const isMatch = bcrypt.compareSync(oldPassword, user.password);
+    if (!isMatch) {
+      return { status: "Err", message: "Mật khẩu cũ không đúng" };
+    }
+    const hashedNewPassword = bcrypt.hashSync(newPassword, 10);
+    user.password = hashedNewPassword;
+    await user.save();
+    return { status: "Ok", message: "Đổi mật khẩu thành công" };
+  } catch (e) {
+    console.log(e);
+    return { status: "Err", message: "Lỗi hệ thống vui lòng thử lại sau!" };
+  }
+};
+
 module.exports = {
   register,
   login,
+  changePassword,
 };

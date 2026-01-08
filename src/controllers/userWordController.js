@@ -104,9 +104,23 @@ const deleteWord = async (req, res) => {
   }
 };
 
+const getWordTypeStats = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const response = await userWordService.getWordTypeStats(userId);
+    return res.status(200).json(response);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      message: "Lỗi hệ thống vui lòng thử lại sau!",
+    });
+  }
+};
+
 module.exports = {
   addWord,
   getUserWords,
   updateWord,
   deleteWord,
+  getWordTypeStats,
 };
