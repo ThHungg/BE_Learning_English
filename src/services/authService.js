@@ -20,7 +20,6 @@ const register = async (username, email, password) => {
       user: newUser,
     };
   } catch (e) {
-    console.log(e);
     return { status: "Err", message: "Lỗi hệ thống vui lòng thử lại sau!" };
   }
 };
@@ -69,7 +68,6 @@ const changePassword = async (userId, oldPassword, newPassword) => {
     await user.save();
     return { status: "Ok", message: "Đổi mật khẩu thành công" };
   } catch (e) {
-    console.log(e);
     return { status: "Err", message: "Lỗi hệ thống vui lòng thử lại sau!" };
   }
 };

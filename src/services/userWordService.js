@@ -24,7 +24,6 @@ const addWord = async (english_word, vn_meaning, word_type, userId) => {
       word: newWord,
     };
   } catch (e) {
-    console.log(e);
     return {
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     };
@@ -50,7 +49,6 @@ const getUserWords = async (userId, limit, offset, page) => {
       totalPage,
     };
   } catch (e) {
-    console.log(e);
     return {
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     };
@@ -73,7 +71,6 @@ const updateWord = async (wordId, english_word, vn_meaning, userId) => {
       word,
     };
   } catch (e) {
-    console.log(e);
     return {
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     };
@@ -97,7 +94,6 @@ const deleteWord = async (wordId, userId) => {
       message: "Xóa từ mới thành công",
     };
   } catch (e) {
-    console.log(e);
     return {
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     };
@@ -127,7 +123,6 @@ const getWordTypeStats = async (userId) => {
       data: formattedStats,
     };
   } catch (e) {
-    console.log(e);
     return {
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     };

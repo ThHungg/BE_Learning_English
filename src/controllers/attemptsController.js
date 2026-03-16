@@ -20,7 +20,6 @@ const getAttemptDetails = async (req, res) => {
     const response = await attemptsService.getAttemptDetails(userId, attemptId);
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     });
@@ -40,7 +39,6 @@ const getAllTempts = async (req, res) => {
     const response = await attemptsService.getAllTempts(userId);
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     });

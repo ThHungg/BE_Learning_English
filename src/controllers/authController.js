@@ -4,7 +4,6 @@ const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    console.log("req.body:", req.body);
     const regmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!regmail.test(email)) {
       return res.status(400).json({ message: "Email không hợp lệ" });
@@ -23,10 +22,8 @@ const register = async (req, res) => {
       });
     }
     const response = await authService.register(username, email, password);
-    console.log("Register response:", response);
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res.status(404).json({
       status: "Err",
       message: "Lỗi hệ thống vui lòng thử lại sau!",
@@ -95,7 +92,6 @@ const changePassword = async (req, res) => {
     );
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     });

@@ -18,7 +18,6 @@ const addWord = async (req, res) => {
     );
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     });
@@ -46,7 +45,6 @@ const getUserWords = async (req, res) => {
     );
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     });
@@ -76,7 +74,6 @@ const updateWord = async (req, res) => {
     );
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     });
@@ -97,7 +94,6 @@ const deleteWord = async (req, res) => {
     const response = await userWordService.deleteWord(wordId, userId);
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     });
@@ -110,7 +106,6 @@ const getWordTypeStats = async (req, res) => {
     const response = await userWordService.getWordTypeStats(userId);
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     });

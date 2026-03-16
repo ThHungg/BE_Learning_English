@@ -7,7 +7,6 @@ const gennerateToken = (payload) => {
     });
     return token;
   } catch (e) {
-    console.log(e);
     return null;
   }
 };

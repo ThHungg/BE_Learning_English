@@ -37,7 +37,6 @@ const submitAnswer = async (req, res) => {
     );
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res
       .status(500)
       .json({ status: "Err", message: "Lỗi khi nộp câu trả lời" });
@@ -70,7 +69,6 @@ const getQuizHistory = async (req, res) => {
     );
     return res.status(200).json(response);
   } catch (e) {
-    console.log(e);
     return res.status(500).json({ message: "Lỗi hệ thống!" });
   }
 };

@@ -24,7 +24,6 @@ const getAttemptDetails = async (userId, attemptId) => {
       data: attempt,
     };
   } catch (e) {
-    console.log(e);
     return {
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     };
@@ -55,7 +54,6 @@ const getAllTempts = async (userId) => {
       data: attempt,
     };
   } catch (e) {
-    console.log(e);
     return {
       message: "Lỗi hệ thống vui lòng thử lại sau!",
     };
